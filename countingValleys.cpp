@@ -26,14 +26,15 @@ int countingValleys(int steps, string path)
         {
             alt--;
             valleyCount++;
-        }
-        if (path[step] == 'D')
-        {
-            alt--;
-        }
-        else
-        {
-            alt++;
+        } else {
+            if (path[step] == 'D')
+            {
+                alt--;
+            }
+            else
+            {
+                alt++;
+            }
         }
     }
 
