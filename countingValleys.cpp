@@ -35,50 +35,49 @@ int countingValleys(int steps, string path)
         {
             alt++;
         }
+
+        return valleyCount;
     }
 
-    return valleyCount;
-}
+    int main()
+    {
+        ofstream fout(getenv("OUTPUT_PATH"));
 
-int main()
-{
-    ofstream fout(getenv("OUTPUT_PATH"));
+        string steps_temp;
+        getline(cin, steps_temp);
 
-    string steps_temp;
-    getline(cin, steps_temp);
+        int steps = stoi(ltrim(rtrim(steps_temp)));
 
-    int steps = stoi(ltrim(rtrim(steps_temp)));
+        string path;
+        getline(cin, path);
 
-    string path;
-    getline(cin, path);
+        int result = countingValleys(steps, path);
 
-    int result = countingValleys(steps, path);
+        fout << result << "\n";
 
-    fout << result << "\n";
+        fout.close();
 
-    fout.close();
+        return 0;
+    }
 
-    return 0;
-}
+    string ltrim(const string &str)
+    {
+        string s(str);
 
-string ltrim(const string &str)
-{
-    string s(str);
+        s.erase(
+            s.begin(),
+            find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
 
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
+        return s;
+    }
 
-    return s;
-}
+    string rtrim(const string &str)
+    {
+        string s(str);
 
-string rtrim(const string &str)
-{
-    string s(str);
+        s.erase(
+            find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+            s.end());
 
-    s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
-        s.end());
-
-    return s;
-}
+        return s;
+    }
